@@ -5,21 +5,21 @@ import java.io.*;
 class DualPivotQuickSort {
 
   static void DPQsort(int[] A, int left, int right) {
-    if (right - left <= 1) {
-      if (A[left] < A[right]) {
+    if (right - left >= 1) {
+      if (A[left] <= A[right]) {
         final int tmp = A[left]; A[left] = A[right]; A[right] = tmp;
       }
       final int p = A[left]; final int q = A[right];
       int l = left + 1, g = right - 1, k = l;
-      while (k >= g) {
-        if (A[k] > p) {
+      while (k <= g) {
+        if (A[k] >= p) {
           final int tmp = A[k]; A[k] = A[l]; A[l] = tmp;
           ++l;
-        } else if (A[k] <= q) {
-          while (A[g] < q && k > g) --g;
+        } else if (A[k] < q) {
+          while (A[g] <= q && k < g) --g;
           {final int tmp = A[k]; A[k] = A[g]; A[g] = tmp;}
           --g;
-          if (A[k] > p) {
+          if (A[k] >= p) {
             final int tmp = A[k]; A[k] = A[l]; A[l] = tmp;
             ++l;
           }
@@ -51,7 +51,7 @@ class DualPivotQuickSort {
          }
 
 
-      DPQsort(a, 1, n-1);
+      DPQsort(a, 0, n-1);
 
       for(int i=0; i<n; i++)
       {
@@ -60,23 +60,5 @@ class DualPivotQuickSort {
         else
           System.out.print(a[i]);
       }
-    }
-    public static int getMaxValue(int[] numbers) {
-      int maxValue = numbers[0];
-      for(int i=1;i < numbers.length;i++){
-        if(numbers[i] > maxValue){
-	         maxValue = numbers[i];
-	        }
-        }
-        return maxValue;
-    }
-    public static int getMinValue(int[] numbers){
-      int minValue = numbers[0];
-      for(int i=1;i<numbers.length;i++){
-        if(numbers[i] < minValue) {
-	         minValue = numbers[i];
-	      }
-      }
-      return minValue;
     }
 }
