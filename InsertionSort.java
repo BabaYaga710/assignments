@@ -66,6 +66,8 @@ class InsertionSort {
          }
        }
      }
+
+     current = head;
      while(current!=null && tail!=head) {
        Node next = current;
        for( ; next.next != tail;  next = next.next) {

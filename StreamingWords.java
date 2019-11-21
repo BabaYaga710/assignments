@@ -12,7 +12,7 @@ class Queue
    {
        front = -1;
        rear = -1;
-       q = new String[10];
+       q = new String[100];
    }
 
    //method to count number of words

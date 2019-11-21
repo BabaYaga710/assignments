@@ -1,6 +1,11 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.*;
 
 //Queue class
+/*
 class Queue
 {
    //member variables
@@ -64,7 +69,7 @@ class Queue
        return front==rear;
    }
 }
-
+*/
 //StreamingWords class
 public class StreamingIntegers
 {
@@ -75,34 +80,44 @@ public class StreamingIntegers
        Scanner sc = new Scanner(System.in);
 
        //create instance of Queue class
-       Queue q = new Queue();
+       PriorityQueue<Integer> q = new PriorityQueue<>();
 
        //read multiple inputs
+       outerloop:
        while(true)
        {
            //read a line
-           String str = sc.nextLine();
+           //String str = sc.nextLine();
+           String[] tmp=sc.nextLine().split(" ");
 
            //stop inputting data, user will enter END
-           if(str.equals("END")) break;
+           //if(str.equals("END")) break;
+           if (tmp.length>1) {
+             for(int i=0; i<tmp.length; i++) {
+                   q.add(Integer.parseInt(tmp[i]));
+                   //if (tmp[i].equals("END")) break outerloop;
+             }
+           } else {
+              if (tmp[0].equals("END")) break outerloop;
+              q.add(Integer.parseInt(tmp[0]));
+           }
+       }
 
            //inputs store into a queue data structure
-           q.enqueue(str);
-       }
+
+
 
        //printing out the data elements in the queue
        while(!q.isEmpty())
        {
-           //remove the queue from the front
-           String str = q.dequeue();
-
-           //printing out the data elements
-           System.out.print(str);
+           if(q.size() == 1)
+              System.out.print(q.remove());
+           else
+              System.out.print(q.remove()+" ");
        }
 
    }
-   while (!q.isEmpty()) {
-    Integer i = q.poll();
-    System.out.println(i);
-}
+   // while (!q.isEmpty()) {
+   //  Integer i = q.poll();
+   //  System.out.println(i);
 }
